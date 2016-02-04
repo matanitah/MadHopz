@@ -1,11 +1,10 @@
 'use strict'
 var canvas = document.getElementById('myCanvas')
-// canvas.width = window.innerWidth;
-// canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 paper.install(window); //paperscript setup
-// paper.setup(canvas);
-console.log(window.clientWidth);
-
+paper.setup(canvas);
+var numFlies = 10;
 class Entity {
   //pos is position, vel is velocity, acc is acceleration, color is color and body is body
   constructor(pos, vel, acc, color, body) {
@@ -76,29 +75,29 @@ class Frog extends Entity {
     //move up when user hits 'up'
     if (Key.isDown('up')) {
       this.vy = -10;
-      // this.y += this.vy;
+      this.y += this.vy;
     } else {
-      // this.vy = 0; //if not pressing anything, velocity is 0
+      this.vy = 0; //if not pressing anything, velocity is 0
     }
     //move down when user hits 'down'
     if (Key.isDown('down')) {
-      this.vy = 10;
-      // this.y += this.vy;
+      this.vy = 5;
+      this.y += this.vy;
     } else {
-      // this.vy = 0; //if not pressing anything, velocity is 0
+      this.vy = 0; //if not pressing anything, velocity is 0
     }
     //move right when user hits 'right'
     if (Key.isDown('right')) {
       this.vx = 10;
-      // this.x += this.vx;
+      this.x += this.vx;
     } else {
-      // this.vx = 0; //if not pressing anything, velocity is 0
+      this.vx = 0; //if not pressing anything, velocity is 0
     }
     if (Key.isDown('left')) {
-      this.vx = -10;
-      // this.x += this.vx;
+      this.vx = -5;
+      this.x += this.vx;
     } else {
-      // this.vx = 0; //if not pressing anything, velocity is 0
+      this.vx = 0; //if not pressing anything, velocity is 0
     }
   }
 }
@@ -111,13 +110,12 @@ class Fly extends Entity {
 class World {
   constructor() {
     this.entities = [];
-    this.numFlies = 10;
 
     this.makeFlies();
   }
 
   makeFlies() {
-    for (var i = 0; i < this.numFlies; i++) {
+    for (var i = 0; i < numFlies; i++) {
       this.entities.push(new Fly());
 
     }
